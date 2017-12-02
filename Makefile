@@ -1,12 +1,12 @@
 all: program
 
-program: Logbook.o Entry.o
-	g++ -o program.exe main.cpp Logbook.o Entry.o -Wall
+program: Logbook.o
+	g++ -o program.exe main.cpp Logbook.o -Wall
 
-Logbook.o: Entry.o
+Logbook.o: Entry.o Logbook.h
 	g++ -c Logbook.cpp
 
-Entry.o:
+Entry.o: Entry.h
 	g++ -c Entry.cpp
 
 clean:

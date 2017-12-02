@@ -1,18 +1,16 @@
-#ifndef _ENTRY_
-#define _ENTRY_
-
-#include <time.h>
 #include <string>
-
-class Entry{
-public:
-    Entry();
-//private:
-    std::string date;
-};
-
+#include <time.h>
+#include "Entry.h"
 Entry::Entry(){
-    date = "N/A";
+    time_t timer;
+    time(&timer);
+    this->date = ctime(&timer);
+    this->text = "";
 }
-
-#endif
+Entry::~Entry(){
+    // do nothing
+}
+Entry::Entry(std::string date){
+    this->date = date;
+    this->text = "";
+}
