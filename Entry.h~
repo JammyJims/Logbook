@@ -6,11 +6,13 @@
 class Entry{
 public:
     Entry();
-    ~Entry();
-    Entry(std::string date);
-//private:
+    Entry(std::string text);
+    std::string Date();
+    std::string Text();
+private:
     std::string date;
     std::string text;
+    std::string today();
 };
 
 #endif

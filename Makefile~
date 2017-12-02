@@ -29,7 +29,7 @@ $RM := rm -f *.o *.exe driver
 #  	$(CC) $(CFLAGS) -o $(TARGET) $(TARGET).c
 
 all: $(TARGET)
-	echo "$(OBJECTS)"
+	echo $(OBJECTS)
 $(TARGET): $(OBJECTS)/%o
 	$(CC) $(CFLAGS) -o $(TARGET) main.cpp $(OBJECTS)
 
