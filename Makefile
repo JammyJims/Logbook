@@ -7,7 +7,7 @@
 
 # Assignments
 #########################################################
-
+VPATH := .
 CC := g++
 SRC := src/
 BUILD := build/
@@ -39,14 +39,14 @@ $RM := rm -f *.o *.exe driver
 #  	$(CC) $(CFLAGS) -o $(TARGET) $(TARGET).c
 
 driver: Logbook.o Entry.o
-	g++ build/Logbook.o build/Entry.o build/main.o -o driver
-main.o: Logbook.o Entry.o
+	g++ build/Logbook.o build/Entry.o build/main.o -o bin/driver
+main.o: main.cpp
 	g++ -c main.cpp
-Logbook.o: Entry.o Logbook.h
-	g++ -c lib/Logbook.cpp
-Entry.o: 
-	g++ -c lib/Entry.cpp
-
+Logbook.o: Entry.o include/Logbook.cpp include/Logbook.h
+	g++ -c include/Logbook.cpp
+Entry.o: include/Entry.cpp include/Entry.h
+	g++ -c include/Entry.cpp
+	
 #all: $(TARGET)
 #	echo "$(OBJECTS)"
 #$(TARGET): $(OBJECTS)/%o
