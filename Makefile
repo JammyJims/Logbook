@@ -7,16 +7,19 @@
 
 # Assignments
 #########################################################
-VPATH := .
 CC := g++
-SRC := src/
-BUILD := build/
-INCLUDE := include/
+SRC := src
+BUILD := build
+INCLUDE := include
 TARGET := bin/driver
-LIB := lib/
-TESTS := tests/
+LIB := lib
+TESTS := tests
 
 CFLAGS := -g -Wall -Wextra
+
+PATH := -I $(INCLUDE)
+
+
 #OBJECTS
 #CC := g++
 #SRCDIR := src
@@ -31,35 +34,22 @@ CFLAGS := -g -Wall -Wextra
 #LIB := -pthread -lmongoclient -L lib -lboost_thread-mt -lboost_filesystem-mt -lboost_system-mt
 #INC := -I include
 
-$RM := rm -f *.o *.exe driver
 
 #########################################################
-
-#  $(TARGET): $(TARGET).c
-#  	$(CC) $(CFLAGS) -o $(TARGET) $(TARGET).c
-
 driver: Logbook.o Entry.o
-	g++ build/Logbook.o build/Entry.o build/main.o -o bin/driver
-main.o: main.cpp
-	g++ -c main.cpp
-Logbook.o: Entry.o include/Logbook.cpp include/Logbook.h
-	g++ -c include/Logbook.cpp
-Entry.o: include/Entry.cpp include/Entry.h
-	g++ -c include/Entry.cpp
+	g++ Logbook.o Entry.o main.o -o driver
 	
-#all: $(TARGET)
-#	echo "$(OBJECTS)"
-#$(TARGET): $(OBJECTS)/%o
-#	$(CC) $(CFLAGS) -o $(TARGET) main.cpp $(OBJECTS)
-#
-#$(OBJECTS)/%.o: $(SRCDIR)/%.$(SRCEXT)
-#	$(CC) -c $(CFLAGS) 
+main.o: main.cpp
+	g++ -c main.cpp 
+	
+Logbook.o: 
+	g++ -c $(PATH) $(LIB)/Logbook.cpp
+	
+Entry.o:
+	g++ -c $(PATH) $(LIB)/Entry.cpp 
 
-#Logbook.o: Entry.o Logbook.h
-#	$(CC) -c $(SRCDIR)/%Logbook.cpp
-#
-#Entry.o: Entry.h
-#	$(CC) -c $(SRCDIR)/%Entry.cpp
+test:
+	g++ -c $(PATH) $(LIB)/Logbook.cpp
 
 clean:
-	$(RM) $(TARGET)
+	rm -f *.o *.exe driver
