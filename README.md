@@ -10,3 +10,6 @@ My personal project for creating a logbook application
 
 # Informative page on makefiles
 http://www.learncpp.com/cpp-tutorial/19-header-files/ 
+
+# Informative page on gtest
+https://www.eriksmistad.no/getting-started-with-google-test-on-ubuntu/ 
