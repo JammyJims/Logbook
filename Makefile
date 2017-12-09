@@ -29,7 +29,7 @@ CC := g++
 TARGET := bin/driver
 CCFLAGS := -g -Wall -Wextra -I $(INCLUDEDIR)
 
-LD_FLAGS := -L googletest/googletest/src -l gtest -l pthread
+LD_FLAGS := -L/usr/lib -lgtest -lgtest_main -lpthread
 TFLAGS := -I $(GTESTDIR)
 
 
@@ -49,8 +49,8 @@ Entry.o:
 
 test:
 	g++ -c -o compare-string.o $(TFLAGS) compare-string.cpp
-	g++ test.cpp $(CCFLAGS) $(TFLAGS) $(LD_FLAGS) compare-string.o -o test.out
-
+	g++  test.cpp -o test.out $(CCFLAGS) /usr/lib/libgtest.a /usr/lib/libgtest_main.a -lpthread
+		
 clean:
 	rm -f *.o *.exe driver
 	
